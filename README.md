@@ -34,8 +34,7 @@ Sebelum menggunakan CodeIgniter 4, dilakukan konfigurasi PHP pada XAMPP dengan m
 4. Simpan dan restart Apache  
 
 📷 Screenshot:  
-_(tambahkan gambar konfigurasi php.ini)_
-
+![img](hapus.png/)
 ---
 
 ## 📦 Instalasi CodeIgniter 4
@@ -62,7 +61,7 @@ http://localhost/lab11_ci/ci4/public
 ```
 
 📷 Screenshot:  
-_(halaman CodeIgniter tampil)_
+![img](install.png/)
 
 ---
 
@@ -81,22 +80,7 @@ php spark
 ```
 
 📷 Screenshot:  
-_(hasil php spark di CMD)_
-
----
-
-## 📁 Struktur Direktori CodeIgniter 4
-
-Folder penting:
-
-- `app/` → kode aplikasi  
-- `public/` → file publik  
-- `writable/` → log & upload  
-- `vendor/` → library  
-- `tests/` → testing  
-
-📷 Screenshot:  
-_(struktur folder CI4)_
+![img](spark.png/)
 
 ---
 
@@ -136,7 +120,7 @@ php spark routes
 ```
 
 📷 Screenshot:  
-_(hasil routes)_
+![img](routes.png/)
 
 ---
 
@@ -181,7 +165,7 @@ http://localhost:8080/about
 ```
 
 📷 Screenshot:  
-_(halaman about)_
+![img](about.png/)
 
 ---
 
@@ -201,6 +185,8 @@ Akses:
 ```
 http://localhost:8080/page/tos
 ```
+📷 Screenshot: 
+![img](auto.png/)
 
 ---
 
@@ -240,7 +226,7 @@ public function about()
 ```
 
 📷 Screenshot:  
-_(view about)_
+![img](akhir.png/)
 
 ---
 
@@ -266,7 +252,7 @@ Pemanggilan di view:
 ```
 
 📷 Screenshot:  
-_(layout lengkap)_
+![img](akhir.png/)
 
 ---
 
@@ -297,10 +283,6 @@ Pada praktikum ini telah dipelajari:
 Mahasiswa berhasil membuat aplikasi web sederhana berbasis CodeIgniter 4 dengan struktur MVC.
 
 ---
-
-## 🔗 Repository
-
-https://github.com/username/Lab7Web  
 
 ---
 
