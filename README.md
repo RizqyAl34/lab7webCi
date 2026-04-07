@@ -1,6 +1,4 @@
-
-
-# 📘 Praktikum 4 – Framework Lanjutan (Modul Login)
+# 📘 Praktikum 1 – Pemrograman Web 2 (CodeIgniter 4)
 
 **Nama:** M. Rizqy Al
 **NIM:** 312410424
@@ -8,47 +6,122 @@
 **Mata Kuliah:** Pemrograman Web 2
 **Dosen:** Agung Nugroho
 
+---
 
 ## 🎯 Tujuan Praktikum
 
-1. Memahami konsep Authentication (Auth)
-2. Memahami penggunaan Filter pada CodeIgniter 4
-3. Membuat sistem login sederhana
-4. Mengamankan halaman admin
+1. Memahami konsep dasar framework
+2. Memahami konsep MVC (Model View Controller)
+3. Membuat aplikasi web sederhana menggunakan CodeIgniter 4
 
 ---
 
-## 🗄️ Membuat Database
+## 🛠️ Persiapan Lingkungan
 
-Membuat tabel `user` untuk menyimpan data login:
+Sebelum menggunakan CodeIgniter 4, dilakukan konfigurasi PHP pada XAMPP dengan mengaktifkan ekstensi berikut:
 
-```sql
-CREATE TABLE user (
-  id INT(11) auto_increment,
-  username VARCHAR(200) NOT NULL,
-  useremail VARCHAR(200),
-  userpassword VARCHAR(200),
-  PRIMARY KEY(id)
-);
-```
+* php-json
+* php-mysqlnd
+* php-xml
+* php-intl
+* libcurl (opsional)
+
+### Langkah:
+
+1. Buka XAMPP Control Panel
+2. Apache → Config → `php.ini`
+3. Hilangkan tanda `;` pada ekstensi
+4. Simpan dan restart Apache
 
 📷 Screenshot:
-![img](database.png/)
+![img](hapus.png)
 
 ---
 
-## 🧩 Membuat Model
+## 📦 Instalasi CodeIgniter 4
 
-File:
+Langkah instalasi manual:
+
+1. Download CodeIgniter 4
+2. Extract ke folder:
 
 ```
-app/Models/UserModel.php
+htdocs/lab11_ci
 ```
 
-Model digunakan untuk mengelola data user dari database.
+3. Rename folder menjadi:
+
+```
+ci4
+```
+
+4. Jalankan pada browser:
+
+```
+http://localhost/lab11_ci/ci4/public
+```
 
 📷 Screenshot:
-![img](model.png/)
+![img](install.png)
+
+---
+
+## 💻 Menjalankan CLI CodeIgniter
+
+Masuk ke folder project:
+
+```
+xampp/htdocs/lab11_ci/ci4
+```
+
+Jalankan perintah:
+
+```
+php spark
+```
+
+📷 Screenshot:
+![img](spark.png)
+
+---
+
+## 🧩 Konsep MVC
+
+MVC adalah arsitektur pemrograman:
+
+* **Model** → pengolahan data
+* **View** → tampilan
+* **Controller** → logika aplikasi
+
+CodeIgniter menggunakan konsep MVC berbasis OOP.
+
+---
+
+## 🔀 Routing CodeIgniter
+
+File routing:
+
+```
+app/Config/Routes.php
+```
+
+Tambahkan route:
+
+```php
+$routes->get('/', 'Home::index');
+$routes->get('/about', 'Page::about');
+$routes->get('/contact', 'Page::contact');
+$routes->get('/faqs', 'Page::faqs');
+```
+
+Cek routing:
+
+```
+php spark routes
+```
+
+📷 Screenshot:
+![img](routes.png)
 
 ---
 
@@ -57,115 +130,144 @@ Model digunakan untuk mengelola data user dari database.
 File:
 
 ```
-app/Controllers/User.php
+app/Controllers/Page.php
 ```
 
-Controller berfungsi untuk:
-
-* Menampilkan data user
-* Proses login
-* Menyimpan session
-* Logout user
-
-📷 Screenshot:
-![img](controller.png/)
-
----
-
-## 🖼️ Membuat View Login
-
-File:
-
-```
-app/Views/user/login.php
-```
-
-Menggunakan Bootstrap untuk tampilan login agar lebih menarik.
-
-📷 Screenshot:
-![img](login.png/)
-
----
-
-## 🌱 Membuat Seeder
-
-Digunakan untuk menambahkan data user otomatis.
-
-Perintah:
-
-```
-php spark make:seeder UserSeeder
-php spark db:seed UserSeeder
-```
-
-Data default:
-
-* Email: [admin@email.com](mailto:admin@email.com)
-* Password: admin123
-
-📷 Screenshot:
-![img](seeder.png/)
-
----
-
-## 🔐 Membuat Filter Auth
-
-File:
-
-```
-app/Filters/Auth.php
-```
-
-Fungsi:
-
-* Mengecek user sudah login atau belum
-* Jika belum login → redirect ke halaman login
-
-📷 Screenshot:
-![img](filter.png/)
-
----
-
-## 🔀 Konfigurasi Routes
-
-Menambahkan proteksi halaman admin:
+Isi:
 
 ```php
-$routes->group('admin', ['filter' => 'auth'], function($routes) {
-    $routes->get('artikel', 'Artikel::admin_index');
-});
-```
+<?php
 
-📷 Screenshot:
-![img](routes-login.png/)
+namespace App\Controllers;
 
----
-
-## 🚪 Fitur Logout
-
-Menambahkan method logout pada controller:
-
-```php
-public function logout()
+class Page extends BaseController
 {
-    session()->destroy();
-    return redirect()->to('/user/login');
+    public function about()
+    {
+        echo "Ini halaman About";
+    }
+
+    public function contact()
+    {
+        echo "Ini halaman Contact";
+    }
+
+    public function faqs()
+    {
+        echo "Ini halaman FAQ";
+    }
+}
+```
+
+Akses:
+
+```
+http://localhost:8080/about
+```
+
+📷 Screenshot:
+![img](about.png)
+
+---
+
+## ⚡ Auto Routing
+
+Tambahkan method:
+
+```php
+public function tos()
+{
+    echo "Ini halaman Term of Services";
+}
+```
+
+Akses:
+
+```
+http://localhost:8080/page/tos
+```
+
+📷 Screenshot:
+![img](auto.png)
+
+---
+
+## 🖼️ Membuat View
+
+File:
+
+```
+app/Views/about.php
+```
+
+Isi:
+
+```php
+<!DOCTYPE html>
+<html>
+<head>
+    <title><?= $title; ?></title>
+</head>
+<body>
+    <h1><?= $title; ?></h1>
+    <p><?= $content; ?></p>
+</body>
+</html>
+```
+
+Ubah controller:
+
+```php
+public function about()
+{
+    return view('about', [
+        'title' => 'Halaman About',
+        'content' => 'Ini adalah halaman About'
+    ]);
 }
 ```
 
 📷 Screenshot:
-![img](logout.png/)
+![img](akhir.png)
 
 ---
 
-## 📌 Hasil Praktikum
+## 🎨 Layout dengan Template & CSS
 
-Fitur yang berhasil dibuat:
+Struktur:
 
-* Login user
-* Session login
-* Proteksi halaman admin
-* Logout
+```
+app/Views/template/header.php
+app/Views/template/footer.php
+public/style.css
+```
+
+Pemanggilan di view:
+
+```php
+<?= $this->include('template/header'); ?>
+
+<h1><?= $title; ?></h1>
+<p><?= $content; ?></p>
+
+<?= $this->include('template/footer'); ?>
+```
+
+📷 Screenshot:
+![img](akhir.png)
+
+---
+
+## 📌 Hasil Akhir
+
+Menu navigasi berhasil menampilkan:
+
+* Home
+* Artikel
+* About
+* Contact
+
+Semua halaman menggunakan layout yang sama.
 
 ---
 
@@ -173,12 +275,12 @@ Fitur yang berhasil dibuat:
 
 Pada praktikum ini telah dipelajari:
 
-* Implementasi sistem login menggunakan CodeIgniter 4
-* Penggunaan session untuk autentikasi
-* Penggunaan filter untuk keamanan halaman
-* Pembuatan logout
+* Instalasi CodeIgniter 4
+* Konfigurasi environment
+* Struktur direktori CI4
+* Konsep MVC
+* Routing dan Controller
+* View dan Template Layout
 
-Sistem login berhasil berjalan dengan baik dan dapat digunakan untuk mengamankan halaman admin.
 
----
-
+Tambahkan seluruh screenshot hasil praktikum di bagian ini sesuai urutan langkah.
