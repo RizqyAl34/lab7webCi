@@ -1,126 +1,54 @@
-# 📘 Praktikum 1 – Pemrograman Web 2 (CodeIgniter 4)
 
-**Nama:** M.Rizqy Al  
-**NIM:** 312410424  
+
+# 📘 Praktikum 4 – Framework Lanjutan (Modul Login)
+
+**Nama:** M. Rizqy Al
+**NIM:** 312410424
 **Kelas:** I241C
-**Mata Kuliah:** Pemrograman Web 2  
-**Dosen:** Agung Nugroho   
+**Mata Kuliah:** Pemrograman Web 2
+**Dosen:** Agung Nugroho
 
----
 
 ## 🎯 Tujuan Praktikum
 
-1. Memahami konsep dasar framework  
-2. Memahami konsep MVC (Model View Controller)  
-3. Membuat aplikasi web sederhana menggunakan CodeIgniter 4  
+1. Memahami konsep Authentication (Auth)
+2. Memahami penggunaan Filter pada CodeIgniter 4
+3. Membuat sistem login sederhana
+4. Mengamankan halaman admin
 
 ---
 
-## 🛠️ Persiapan Lingkungan
+## 🗄️ Membuat Database
 
-Sebelum menggunakan CodeIgniter 4, dilakukan konfigurasi PHP pada XAMPP dengan mengaktifkan ekstensi berikut:
+Membuat tabel `user` untuk menyimpan data login:
 
-- php-json  
-- php-mysqlnd  
-- php-xml  
-- php-intl  
-- libcurl (opsional)  
-
-**Langkah:**
-
-1. Buka XAMPP Control Panel  
-2. Apache → Config → `php.ini`  
-3. Hilangkan tanda `;` pada ekstensi  
-4. Simpan dan restart Apache  
-
-📷 Screenshot:  
-![img](hapus.png/)
----
-
-## 📦 Instalasi CodeIgniter 4
-
-Langkah instalasi manual:
-
-1. Download CodeIgniter 4  
-2. Extract ke folder:
-
-```
-htdocs/lab11_ci
+```sql
+CREATE TABLE user (
+  id INT(11) auto_increment,
+  username VARCHAR(200) NOT NULL,
+  useremail VARCHAR(200),
+  userpassword VARCHAR(200),
+  PRIMARY KEY(id)
+);
 ```
 
-3. Rename folder menjadi:
-
-```
-ci4
-```
-
-4. Jalankan pada browser:
-
-```
-http://localhost/lab11_ci/ci4/public
-```
-
-📷 Screenshot:  
-![img](install.png/)
+📷 Screenshot:
+![img](database.png/)
 
 ---
 
-## 💻 Menjalankan CLI CodeIgniter
+## 🧩 Membuat Model
 
-Masuk ke folder project:
-
-```
-xampp/htdocs/lab11_ci/ci4
-```
-
-Jalankan perintah:
+File:
 
 ```
-php spark
+app/Models/UserModel.php
 ```
 
-📷 Screenshot:  
-![img](spark.png/)
+Model digunakan untuk mengelola data user dari database.
 
----
-
-## 🧩 Konsep MVC
-
-MVC adalah arsitektur pemrograman:
-
-- **Model** → pengolahan data  
-- **View** → tampilan  
-- **Controller** → logika aplikasi  
-
-CodeIgniter menggunakan konsep MVC berbasis OOP.
-
----
-
-## 🔀 Routing CodeIgniter
-
-File routing:
-
-```
-app/Config/Routes.php
-```
-
-Tambahkan route:
-
-```php
-$routes->get('/', 'Home::index');
-$routes->get('/about', 'Page::about');
-$routes->get('/contact', 'Page::contact');
-$routes->get('/faqs', 'Page::faqs');
-```
-
-Cek routing:
-
-```
-php spark routes
-```
-
-📷 Screenshot:  
-![img](routes.png/)
+📷 Screenshot:
+![img](model.png/)
 
 ---
 
@@ -129,143 +57,115 @@ php spark routes
 File:
 
 ```
-app/Controllers/Page.php
+app/Controllers/User.php
 ```
 
-Isi:
+Controller berfungsi untuk:
 
-```php
-<?php
+* Menampilkan data user
+* Proses login
+* Menyimpan session
+* Logout user
 
-namespace App\Controllers;
-
-class Page extends BaseController
-{
-    public function about()
-    {
-        echo "Ini halaman About";
-    }
-
-    public function contact()
-    {
-        echo "Ini halaman Contact";
-    }
-
-    public function faqs()
-    {
-        echo "Ini halaman FAQ";
-    }
-}
-```
-
-Akses:
-
-```
-http://localhost:8080/about
-```
-
-📷 Screenshot:  
-![img](about.png/)
+📷 Screenshot:
+![img](controller.png/)
 
 ---
 
-## ⚡ Auto Routing
-
-Tambahkan method:
-
-```php
-public function tos()
-{
-    echo "Ini halaman Term of Services";
-}
-```
-
-Akses:
-
-```
-http://localhost:8080/page/tos
-```
-📷 Screenshot: 
-![img](auto.png/)
-
----
-
-## 🖼️ Membuat View
+## 🖼️ Membuat View Login
 
 File:
 
 ```
-app/Views/about.php
+app/Views/user/login.php
 ```
 
-Isi:
+Menggunakan Bootstrap untuk tampilan login agar lebih menarik.
 
-```php
-<!DOCTYPE html>
-<html>
-<head>
-    <title><?= $title; ?></title>
-</head>
-<body>
-    <h1><?= $title; ?></h1>
-    <p><?= $content; ?></p>
-</body>
-</html>
+📷 Screenshot:
+![img](login.png/)
+
+---
+
+## 🌱 Membuat Seeder
+
+Digunakan untuk menambahkan data user otomatis.
+
+Perintah:
+
+```
+php spark make:seeder UserSeeder
+php spark db:seed UserSeeder
 ```
 
-Ubah controller:
+Data default:
+
+* Email: [admin@email.com](mailto:admin@email.com)
+* Password: admin123
+
+📷 Screenshot:
+![img](seeder.png/)
+
+---
+
+## 🔐 Membuat Filter Auth
+
+File:
+
+```
+app/Filters/Auth.php
+```
+
+Fungsi:
+
+* Mengecek user sudah login atau belum
+* Jika belum login → redirect ke halaman login
+
+📷 Screenshot:
+![img](filter.png/)
+
+---
+
+## 🔀 Konfigurasi Routes
+
+Menambahkan proteksi halaman admin:
 
 ```php
-public function about()
+$routes->group('admin', ['filter' => 'auth'], function($routes) {
+    $routes->get('artikel', 'Artikel::admin_index');
+});
+```
+
+📷 Screenshot:
+![img](routes-login.png/)
+
+---
+
+## 🚪 Fitur Logout
+
+Menambahkan method logout pada controller:
+
+```php
+public function logout()
 {
-    return view('about', [
-        'title' => 'Halaman About',
-        'content' => 'Ini adalah halaman About'
-    ]);
+    session()->destroy();
+    return redirect()->to('/user/login');
 }
 ```
 
-📷 Screenshot:  
-![img](akhir.png/)
+📷 Screenshot:
+![img](logout.png/)
 
 ---
 
-## 🎨 Layout dengan Template & CSS
+## 📌 Hasil Praktikum
 
-Struktur:
+Fitur yang berhasil dibuat:
 
-```
-app/Views/template/header.php
-app/Views/template/footer.php
-public/style.css
-```
-
-Pemanggilan di view:
-
-```php
-<?= $this->include('template/header'); ?>
-
-<h1><?= $title; ?></h1>
-<p><?= $content; ?></p>
-
-<?= $this->include('template/footer'); ?>
-```
-
-📷 Screenshot:  
-![img](akhir.png/)
-
----
-
-## 📌 Hasil Akhir
-
-Menu navigasi berhasil menampilkan:
-
-- Home  
-- Artikel  
-- About  
-- Contact  
-
-Semua halaman menggunakan layout yang sama.
+* Login user
+* Session login
+* Proteksi halaman admin
+* Logout
 
 ---
 
@@ -273,19 +173,15 @@ Semua halaman menggunakan layout yang sama.
 
 Pada praktikum ini telah dipelajari:
 
-- Instalasi CodeIgniter 4  
-- Konfigurasi environment  
-- Struktur direktori CI4  
-- Konsep MVC  
-- Routing dan Controller  
-- View dan Template Layout  
+* Implementasi sistem login menggunakan CodeIgniter 4
+* Penggunaan session untuk autentikasi
+* Penggunaan filter untuk keamanan halaman
+* Pembuatan logout
 
-Mahasiswa berhasil membuat aplikasi web sederhana berbasis CodeIgniter 4 dengan struktur MVC.
-
----
+Sistem login berhasil berjalan dengan baik dan dapat digunakan untuk mengamankan halaman admin.
 
 ---
 
 ## 📷 Dokumentasi
 
-Tambahkan seluruh screenshot hasil praktikum di bagian ini sesuai urutan langkah.
+Tambahkan seluruh screenshot hasil praktikum login di bagian ini sesuai urutan langkah.
