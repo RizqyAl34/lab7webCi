@@ -182,6 +182,3 @@ Sistem login berhasil berjalan dengan baik dan dapat digunakan untuk mengamankan
 
 ---
 
-## 📷 Dokumentasi
-
-Tambahkan seluruh screenshot hasil praktikum login di bagian ini sesuai urutan langkah.
