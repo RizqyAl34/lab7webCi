@@ -1,0 +1,450 @@
+/* =============================
+   RESET & BASE
+   ============================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+}
+
+/* =============================
+   LAYOUT UTAMA
+   ============================= */
+#app {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* =============================
+   HEADER
+   ============================= */
+header {
+    background: linear-gradient(135deg, #3152d6, #5778ff);
+    color: white;
+    padding: 20px 25px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(49, 82, 214, 0.3);
+}
+
+header h1 {
+    font-size: 22px;
+    margin-bottom: 12px;
+    color: white;
+}
+
+/* =============================
+   NAVIGATION
+   ============================= */
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.nav-menu a,
+.nav-menu span {
+    text-decoration: none;
+    color: rgba(255,255,255,0.85);
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 20px;
+    transition: all 0.2s ease;
+    font-size: 14px;
+}
+
+.nav-menu a:hover {
+    background-color: rgba(255,255,255,0.2);
+    color: white;
+}
+
+.router-link-exact-active {
+    background-color: white !important;
+    color: #3152d6 !important;
+    border-radius: 20px;
+}
+
+/* =============================
+   HOME
+   ============================= */
+.home-container {
+    padding: 30px;
+    border: 1px solid #e0e4f0;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+}
+
+.home-container h2 {
+    color: #3152d6;
+    margin-bottom: 15px;
+    font-size: 22px;
+}
+
+.home-container p {
+    color: #555;
+    line-height: 1.7;
+    font-size: 15px;
+}
+
+/* =============================
+   ABOUT
+   ============================= */
+.about-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.about-table td {
+    padding: 10px 15px;
+    border-bottom: 1px solid #eff1ff;
+    font-size: 15px;
+}
+
+.about-table tr:nth-child(odd) {
+    background-color: #f8f9ff;
+}
+
+/* =============================
+   KELOLA ARTIKEL — WRAPPER
+   ============================= */
+.artikel-wrapper,
+div > h2 {
+    background: white;
+    border-radius: 10px;
+}
+
+/* =============================
+   TABLE
+   ============================= */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+}
+
+th {
+    padding: 12px 15px;
+    background: linear-gradient(135deg, #3152d6, #5778ff);
+    color: #ffffff;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+tr td {
+    border-bottom: 1px solid #eff1ff;
+    padding: 12px 15px;
+    font-size: 14px;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+tr:nth-child(even) {
+    background-color: #f8f9ff;
+}
+
+tr:hover {
+    background-color: #eff1ff;
+    transition: background 0.2s;
+}
+
+.center-text {
+    text-align: center;
+}
+
+td a {
+    margin: 0 4px;
+    color: #3152d6;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 13px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    border: 1px solid #3152d6;
+    transition: all 0.2s;
+}
+
+td a:hover {
+    background-color: #3152d6;
+    color: white;
+}
+
+/* =============================
+   BUTTONS
+   ============================= */
+#btn-tambah {
+    margin-bottom: 15px;
+    padding: 10px 22px;
+    cursor: pointer;
+    background: linear-gradient(135deg, #3152d6, #5778ff);
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 3px 10px rgba(49,82,214,0.3);
+    transition: all 0.2s;
+}
+
+#btn-tambah:hover {
+    background: linear-gradient(135deg, #2341b5, #3152d6);
+    box-shadow: 0 5px 15px rgba(49,82,214,0.4);
+    transform: translateY(-1px);
+}
+
+#btnSimpan {
+    background: linear-gradient(135deg, #3152d6, #5778ff);
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+#btnSimpan:hover {
+    background: linear-gradient(135deg, #2341b5, #3152d6);
+}
+
+/* =============================
+   FORM
+   ============================= */
+#form-data {
+    width: 100%;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"] {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 5px;
+    border: 1px solid #dde0f0;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border 0.2s;
+}
+
+form input:focus {
+    outline: none;
+    border-color: #3152d6;
+    box-shadow: 0 0 0 3px rgba(49,82,214,0.1);
+}
+
+form select {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 5px;
+    border: 1px solid #dde0f0;
+    border-radius: 6px;
+    font-size: 14px;
+    background: white;
+}
+
+form textarea {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 5px;
+    border: 1px solid #dde0f0;
+    border-radius: 6px;
+    font-size: 14px;
+    resize: vertical;
+    transition: border 0.2s;
+}
+
+form textarea:focus {
+    outline: none;
+    border-color: #3152d6;
+    box-shadow: 0 0 0 3px rgba(49,82,214,0.1);
+}
+
+form div {
+    margin-bottom: 12px;
+}
+
+form button {
+    padding: 10px 22px;
+    margin-top: 8px;
+    margin-right: 8px;
+    cursor: pointer;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    transition: all 0.2s;
+}
+
+form button[type="button"] {
+    background: #f0f2f5;
+    color: #555;
+    border: 1px solid #dde0f0;
+}
+
+form button[type="button"]:hover {
+    background: #e0e4f0;
+}
+
+/* =============================
+   MODAL
+   ============================= */
+.modal {
+    display: block;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+}
+
+.modal-content {
+    background-color: #ffffff;
+    margin: 8% auto;
+    padding: 30px;
+    border: none;
+    width: 580px;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-30px); opacity: 0; }
+    to   { transform: translateY(0);     opacity: 1; }
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 26px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s;
+}
+
+.close:hover {
+    color: #e53e3e;
+}
+
+/* =============================
+   LOGIN
+   ============================= */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0;
+}
+
+.login-box {
+    width: 380px;
+    padding: 35px;
+    border: none;
+    border-radius: 12px;
+    background-color: #ffffff;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+}
+
+.login-box h2 {
+    margin-top: 0;
+    margin-bottom: 25px;
+    text-align: center;
+    color: #3152d6;
+    font-size: 22px;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #444;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #dde0f0;
+    border-radius: 6px;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: border 0.2s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #3152d6;
+    box-shadow: 0 0 0 3px rgba(49,82,214,0.1);
+}
+
+.btn-login {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #3152d6, #5778ff);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 12px rgba(49,82,214,0.3);
+}
+
+.btn-login:hover {
+    background: linear-gradient(135deg, #2341b5, #3152d6);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(49,82,214,0.4);
+}
+
+.error-msg {
+    color: #e53e3e;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 15px;
+    padding: 8px;
+    background: #fff5f5;
+    border-radius: 6px;
+    border: 1px solid #fed7d7;
+}
+
+/* =============================
+   LOADING & ERROR
+   ============================= */
+p[style*="color:#3152d6"] {
+    padding: 15px;
+    background: #f0f4ff;
+    border-radius: 6px;
+    text-align: center;
+}
+
+p[style*="color:red"] {
+    padding: 15px;
+    background: #fff5f5;
+    border-radius: 6px;
+    border: 1px solid #fed7d7;
+    text-align: center;
+}
