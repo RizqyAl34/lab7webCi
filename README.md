@@ -1423,5 +1423,3 @@ axios.interceptors.response.use(
 Kesimpulan: Navigation Guards melindungi **tampilan/UI**, sedangkan CI4 Filters melindungi **data/database**. Keduanya harus digunakan bersamaan untuk keamanan yang menyeluruh (defense in depth).
 
 ---
-
-*Laporan ini dibuat sebagai dokumentasi praktikum Pemrograman Web 2, Universitas Pelita Bangsa.*
