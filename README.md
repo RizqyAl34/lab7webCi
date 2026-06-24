@@ -1,4 +1,4 @@
-<img width="1365" height="671" alt="image" src="https://github.com/user-attachments/assets/cc86403d-8dc3-482c-afbf-9734dd447db7" /><img width="1365" height="661" alt="image" src="https://github.com/user-attachments/assets/083f18be-117e-46bc-8b5f-df5b5e02de14" /><img width="1360" height="654" alt="image" src="https://github.com/user-attachments/assets/e4cd20c9-89fd-48da-be28-0b8c0a97d4c0" /># Laporan Praktikum Pemrograman Web 2
+Praktikum Pemrograman Web 2
 
 **Nama:** M. Rizqy Al  
 **NIM:** 312410424  
